@@ -80,21 +80,7 @@ class RedditService {
   // This method is intended to Parse data from API to a data structure defied for this app
   ParseRawPost(rawPost: any): RedditPost | null {
     if (!rawPost) return null;
-    let previewImgUri = "";
-
-    // Grab first image, if present as thumbnail
-    if (
-      rawPost.preview &&
-      rawPost.preview.images &&
-      rawPost.preview.images[0] &&
-      rawPost.preview.images[0].resolutions &&
-      rawPost.preview.images[0].resolutions[0] &&
-      rawPost.preview.images[0].resolutions &&
-      rawPost.preview.images[0].resolutions[0].url
-    ) {
-      previewImgUri = rawPost.preview.images[0].resolutions[0].url;
-    }
-
+   
     // Post creation time calculation
     const postCreation = moment.unix(rawPost.created_utc);
     const now = moment(Date());
@@ -107,7 +93,11 @@ class RedditService {
       entryDate: `${Math.floor(duration.asHours())} hours ago`,
       comments: rawPost.num_comments,
       unreadStatus: rawPost.visited,
-      thumbnail: previewImgUri
+      thumbnail: {
+        uri: rawPost.thumbnail,
+        height: rawPost.thumbnail_height,
+        width: rawPost.thumbnail_width
+      }
     };
   }
 }

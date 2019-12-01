@@ -13,7 +13,11 @@ export interface RedditPost {
   title: string;
   author: string;
   entryDate: string;
-  thumbnail: string;
+  thumbnail: {
+    uri: string
+    height: string
+    width: string
+  }
   comments: number;
   unreadStatus: string;
 }
