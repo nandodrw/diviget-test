@@ -1,11 +1,19 @@
 import Vue from "vue";
-import Vuex from "vuex";
+import Vuex, { StoreOptions } from "vuex";
+import { RootState } from "@/types";
+import Reddit from "@/store/modules/reddit.module";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {},
+const store: StoreOptions<RootState> = {
+  state: {
+    version: 1
+  },
   mutations: {},
   actions: {},
-  modules: {}
-});
+  modules: {
+    Reddit
+  }
+};
+
+export default new Vuex.Store(store);

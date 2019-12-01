@@ -1,3 +1,6 @@
+import axios from "axios";
+import * as base64 from "base-64";
+
 /**
  * This class represents a service that is the unique bridge to interact to reddit api and services
  */
@@ -7,6 +10,7 @@ class RedditService {
 
   private rootUrl: string;
   private redditAuthorizeUrl: string;
+  private redditOauthTokenUrl: string;
   private redditAPIUrl: string;
   private oauthHandlerRoute: string;
 
@@ -21,6 +25,7 @@ class RedditService {
 
     this.redditAuthorizeUrl = "https://www.reddit.com/api/v1/authorize";
     this.redditAPIUrl = "https://oauth.reddit.com/";
+    this.redditOauthTokenUrl = "https://www.reddit.com/api/v1/access_token";
 
     // This rouse should be set at a Vue route
     this.oauthHandlerRoute = "reddit-auth-redirect";
@@ -38,6 +43,19 @@ class RedditService {
     // At this part app will be redirected to reddit OAUTH screen, Reddit require a "state" parameter, in other context this parameter
     // could be used to give a clue about what was the last state of the app before been redirect to OAUTH flow
     window.location.href = `${this.redditAuthorizeUrl}?client_id=${this.clientId}&response_type=code&state=bananas&redirect_uri=${this.redirectUri}&duration=${duration}&scope=${scope}`;
+  }
+
+  async GetAuthorizationToken(authCode: string): Promise<string> {
+    const response = await axios({
+      method: "POST",
+      url: this.redditOauthTokenUrl,
+      data: `grant_type=authorization_code&code=${authCode}&redirect_uri=${this.redirectUri}`,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${base64.encode(`${this.clientId}:${this.key}`)}`
+      }
+    });
+    return response.data.access_token;
   }
 }
 
