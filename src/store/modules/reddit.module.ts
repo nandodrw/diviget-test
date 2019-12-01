@@ -1,6 +1,7 @@
 import { Module } from "vuex";
 import { RedditState, RootState } from "@/types";
 import RedditService from "@services/reddit.service";
+import router from "@/router";
 
 const Reddit: Module<RedditState, RootState> = {
   namespaced: true,
@@ -23,6 +24,11 @@ const Reddit: Module<RedditState, RootState> = {
         authorizationCode
       );
       commit("SetToken", token);
+      router.push('/posts')
+    },
+
+    async GetPosts({ commit }) {
+      // get post from reddit ...
     }
   }
 };

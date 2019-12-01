@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import RedditOauth from "@views/RedditOauth.vue";
+import Posts from "@views/Posts.vue";
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,11 @@ const routes = [
     path: "/reddit-auth-redirect",
     name: "reddit-auth-redirect",
     component: RedditOauth
+  },
+  {
+    path: "/posts",
+    name: "posts",
+    component: Posts
   }
 ];
 
