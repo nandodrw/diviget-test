@@ -55,7 +55,6 @@ const Reddit: Module<RedditState, RootState> = {
         if (!parsedPost || parsedPost == null) continue;
         commit("AddPost", parsedPost);
       }
-      console.log(rawPosts.data.children);
     }
   }
 };
