@@ -8,6 +8,9 @@
         </li>
       </ul>
     </section>
+    <section id="post-detail">
+      <p>Post Detail</p>
+    </section>
   </div>
 </template>
 
@@ -35,6 +38,14 @@ export default class Posts extends Vue {
 </script>
 
 <style lang="sass" scoped>
+#post-list-section
+  float: left
+  width: 30%
+
+#post-detail
+  float: left
+  width: 70%
+
 .post-list
   list-style: none
   margin-top: 0

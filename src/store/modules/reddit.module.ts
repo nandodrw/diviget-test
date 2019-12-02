@@ -40,6 +40,10 @@ const Reddit: Module<RedditState, RootState> = {
 
     // This mutation get Top post from reddit and committed them to app state
     async GetPosts({ commit, state }) {
+      if (!state.token) {
+        router.push("/");
+        return;
+      }
       const rawPosts = await RedditService.GetDataFromListingEndpoint(
         "top",
         state.token

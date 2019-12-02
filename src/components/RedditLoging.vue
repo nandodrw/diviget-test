@@ -1,5 +1,8 @@
 <template>
-  <button v-on:click="GoToAuth()">Logging With Reddit</button>
+  <div>
+    <p>Logging with a Reddit account is needed in order to query the API</p>
+    <button v-on:click="GoToAuth()">Loging With Reddit</button>
+  </div>
 </template>
 
 <script lang="ts">
@@ -13,3 +16,11 @@ export default class RedditLoging extends Vue {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+button
+  font-size: 1.5em
+
+div
+  text-align: center
+</style>

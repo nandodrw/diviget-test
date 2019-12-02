@@ -1,7 +1,7 @@
 <template>
   <div class="post-preview">
     <div class="caption">
-      <span class="big white left">{{ post.author }}</span> 
+      <span class="big white left">{{ post.author }}</span>
       <span class="medium white">{{ post.entryDate }}</span>
     </div>
     <div class="image">

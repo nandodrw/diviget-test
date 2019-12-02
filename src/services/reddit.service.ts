@@ -80,7 +80,7 @@ class RedditService {
   // This method is intended to Parse data from API to a data structure defied for this app
   ParseRawPost(rawPost: any): RedditPost | null {
     if (!rawPost) return null;
-   
+
     // Post creation time calculation
     const postCreation = moment.unix(rawPost.created_utc);
     const now = moment(Date());
